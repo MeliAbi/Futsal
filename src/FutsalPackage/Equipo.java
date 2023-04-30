@@ -1,16 +1,17 @@
 package FutsalPackage;
 
 import java.util.HashSet;
-import java.util.Objects;
+
 
 public class Equipo {
 	
-	private EquiposEnum equipo = null;
+	private EquiposEnum equipo;
 	private HashSet <Jugador> listaEquipo;
+	
 	
 	public Equipo(EquiposEnum equipo) {
 		this.equipo=equipo;
-		this.listaEquipo = new HashSet <>();
+		this.listaEquipo = new HashSet <Jugador>();
 	}
 
 	public EquiposEnum getEquipo() {
@@ -33,13 +34,20 @@ public class Equipo {
 		
 	}
 
-	public HashSet<Jugador> getListaEquipos() {
-		return listaEquipo;
+	public Integer getListaEquipos() {
+		return listaEquipo.size();
 	}
 
-	public void setListaEquipos(HashSet<Jugador> listaEquipos) {
-		this.listaEquipo = listaEquipos;
+	public Double calcularValorEquipo() {
+		Double precioEquipo=0.0;
+		
+		for(Jugador jugador:listaEquipo) {
+			precioEquipo+=jugador.getPrecio();
+		}
+		return precioEquipo;
 	}
+
+	
 
 
 	
