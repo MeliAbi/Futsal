@@ -1,6 +1,5 @@
 package FutsalPackage;
 
-import java.util.Objects;
 
 public class Jugador {
 	
