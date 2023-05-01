@@ -7,6 +7,8 @@ public class Jugador {
 	String apellido= "";
 	Double precio=0.0;
 	Integer edad=0, dni=0;
+	Integer contAmon;
+	Boolean estaExpulsado;
 	
 	public Jugador(String nombre, String apellido,Double precio,Integer edad, Integer dni) {
 		this.nombre=nombre;
@@ -14,6 +16,8 @@ public class Jugador {
 		this.edad = edad;
 		this.precio= precio;
 		this.dni=dni;
+		this.contAmon=0;
+		this.estaExpulsado=false;
 	}
 
 	public String getNombre() {
@@ -56,6 +60,24 @@ public class Jugador {
 		this.dni = dni;
 	}
 
+	
+	
+	public Integer getContAmon() {
+		return contAmon;
+	}
+
+	public void setContAmon(Integer contAmon) {
+		this.contAmon = contAmon;
+	}
+
+	public Boolean getEstaExpulsado() {
+		return estaExpulsado;
+	}
+
+	public void setEstaExpulsado(Boolean estaExpulsado) {
+		this.estaExpulsado = estaExpulsado;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,27 +103,6 @@ public class Jugador {
 		return true;
 	}
 
-	
-
-	
-	
-	
-	/*@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((dni == null ) ? 0 : dni.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this.dni== ((Jugador)obj).dni) {
-			return true;
-		} else {
-			return false;
-		}
-	}*/
 
 	
 }

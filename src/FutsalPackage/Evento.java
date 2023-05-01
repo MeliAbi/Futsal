@@ -1,8 +1,8 @@
 package FutsalPackage;
 
 public class Evento {
- private Integer minuto=0;
- private Jugador jugadorQueRealizoEvento=null;
+ protected Integer minuto=0;
+ protected Jugador jugadorQueRealizoEvento=null;
  
  public Evento(Integer minuto, Jugador jugadorQueRealizoEvento) {
 	 this.minuto=minuto;
@@ -23,6 +23,15 @@ public Jugador getJugadorQueRealizoEvento() {
 
 public void setJugadorQueRealizoEvento(Jugador jugadorQueRealizoEvento) {
 	this.jugadorQueRealizoEvento = jugadorQueRealizoEvento;
+}
+
+public String toStringEvento() {
+	String mensaje="";
+	
+	mensaje = "\nJugador: " + jugadorQueRealizoEvento.getNombre() +" "+ jugadorQueRealizoEvento.getApellido()
+			+ "\nMinuto: " + minuto;
+	
+	return mensaje;
 }
  
 }

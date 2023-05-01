@@ -199,8 +199,6 @@ public class FutsalTest {
 	Jugador jugadorQueRealizoEvento=jugadorVisitante;
 	Equipo equipoQueRealizoElGol=equipoVisitante;
 	
-	String nombreJugadorQueMetioGol="Papu";
-	
 	//////
 	
 	Partido nuevoPartido=new Partido(equipoLocal, equipoVisitante);
@@ -211,9 +209,111 @@ public class FutsalTest {
 	
 	/////
 	
+	assertEquals(1, nuevoPartido.getGolesPartido().size());
+	
+	}
+	
+	@Test
+	public void queSeaAmonestado() {
+	////////// Se inicializan variables de jugadores, partido, etc
+	String nombre = "Pedro", apellido = "Pascal";
+	Integer edad = 47;
+	Double precio = 9.00;
+	Integer dni=20234000;
 	
 	
-	assertEquals(0, nuevoPartido.getGolesPartido().size());
+	String nombre2 = "Papu", apellido2 = "Pascal";
+	Integer edad2 = 23;
+	Double precio2 = 12.00;
+	Integer dni2=28774885;
+	Amonestacion nuevaAmonestacion;
 	
-}
+	EquiposEnum equipoLocalCLUB = EquiposEnum.DEPORTIVO_GENSHIN;
+	EquiposEnum equipoVisitanteCLUB = EquiposEnum.BOCA;
+	
+	////////// Se inicializan equipos y jugadores
+	
+	Equipo equipoLocal = new Equipo(equipoLocalCLUB);
+	Equipo equipoVisitante = new Equipo(equipoVisitanteCLUB);
+	
+	Jugador jugadorLocal = new Jugador(nombre,apellido,precio,edad,dni);
+	Jugador jugadorVisitante = new Jugador(nombre2,apellido2,precio2,edad2,dni2);
+	
+	equipoLocal.agregarJugadorAlEquipo(jugadorLocal);
+	equipoVisitante.agregarJugadorAlEquipo(jugadorVisitante);
+	
+	/////// Detalles del evento
+	
+	Integer minutoAmonestacion=40;
+	Jugador jugadorQueRealizoEvento=jugadorVisitante;
+	Equipo equipoQueRealizoLaAmonestacion=equipoVisitante;
+	
+	////// Se crea partido y evento
+	
+	Partido nuevoPartido=new Partido(equipoLocal, equipoVisitante);
+	nuevaAmonestacion=new Amonestacion(minutoAmonestacion, jugadorQueRealizoEvento, equipoQueRealizoLaAmonestacion);
+	
+	///// Validaciones
+	
+	Integer a=1;
+	
+	assertTrue(nuevoPartido.seAmonesto(nuevaAmonestacion));
+	assertEquals(1, nuevoPartido.getAmonestacionesPartido().size());
+	assertEquals(a,nuevaAmonestacion.getJugadorQueRealizoEvento().getContAmon());
+	
+	}
+	
+	@Test
+	public void queSeaExpulsadoDirectamente() {
+	////////// Se inicializan variables de jugadores, partido, etc
+	String nombre = "Pedro", apellido = "Pascal";
+	Integer edad = 47;
+	Double precio = 9.00;
+	Integer dni=20234000;
+	
+	
+	String nombre2 = "Papu", apellido2 = "Pascal";
+	Integer edad2 = 23;
+	Double precio2 = 12.00;
+	Integer dni2=28774885;
+	Expulsiones nuevaExpulsion, nuevaExpulsion2;
+	
+	EquiposEnum equipoLocalCLUB = EquiposEnum.DEPORTIVO_GENSHIN;
+	EquiposEnum equipoVisitanteCLUB = EquiposEnum.BOCA;
+	
+	////////// Se inicializan equipos y jugadores
+	
+	Equipo equipoLocal = new Equipo(equipoLocalCLUB);
+	Equipo equipoVisitante = new Equipo(equipoVisitanteCLUB);
+	
+	Jugador jugadorLocal = new Jugador(nombre,apellido,precio,edad,dni);
+	Jugador jugadorVisitante = new Jugador(nombre2,apellido2,precio2,edad2,dni2);
+	
+	equipoLocal.agregarJugadorAlEquipo(jugadorLocal);
+	equipoVisitante.agregarJugadorAlEquipo(jugadorVisitante);
+	
+	/////// Detalles del evento
+	
+	Integer minutoExpulsion=40;
+	Jugador jugadorQueRealizoEvento=jugadorVisitante;
+	Equipo equipoQueTuvoExpulsado=equipoVisitante;
+	
+	Integer minutoExpulsion2=41;
+	Jugador jugadorQueRealizoEvento2=jugadorLocal;
+	Equipo equipoQueTuvoExpulsado2=equipoLocal;
+	////// Se crea partido y evento
+	
+	Partido nuevoPartido=new Partido(equipoLocal, equipoVisitante);
+	nuevaExpulsion=new Expulsiones (minutoExpulsion, jugadorQueRealizoEvento, equipoQueTuvoExpulsado);
+	nuevaExpulsion2=new Expulsiones (minutoExpulsion2, jugadorQueRealizoEvento2, equipoQueTuvoExpulsado2);
+	
+	nuevoPartido.seExpulso(nuevaExpulsion);
+	nuevoPartido.seExpulso(nuevaExpulsion2);
+	///// Validaciones
+	
+	assertEquals(nombre2,nuevaExpulsion.getJugadorQueRealizoEvento().getNombre());
+	
+	System.out.println(nuevoPartido.toString());
+	}
+	
 }
